@@ -14,16 +14,20 @@
     </ng-container>
 
     
-            <table class="table table-striped">
-                <tr>
+            <table class="table table-striped ">
+                <thead>
+                <tr  class="table-primary">
                     <th>Id</th><th>Program</th><th>Design</th><th>Developement</th>
                 </tr>
+                </thead>
+                <tbody>
                 <tr *ngFor="let aircraft of result.data">
-                    <td>{{aircraft.id}}</td>
+                    <td >{{aircraft.id}}</td>
                     <td>{{aircraft.prog}}</td>
                     <td>{{aircraft.design}}</td>
                     <td>{{aircraft.developpement}}</td>
                 </tr>
+            </tbody>
             </table>
         
 </ng-container>
