@@ -1,19 +1,10 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "aircrafts": [
+    { "id": 1, "prog": "A350", "design": true, "developpement": false },
+    { "id": 2, "prog": "A320", "design": false, "developpement": true },
+    { "id": 3, "prog": "A380", "design": false, "developpement": true },
+    { "id": 4, "prog": "A400M", "design": false, "developpement": false },
+    { "id": 5, "prog": "A330", "design": true, "developpement": true }
+  ]
+  
 }
