@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, startWith } from 'rxjs';
 import { AircraftService } from 'src/app/services/aircraft.service';
-import { AppDataState } from 'src/app/state/aircraft.state';
+import { AircraftsActionsTypes, AppDataState, onActionEvent } from 'src/app/state/aircraft.state';
 import { DataStateEnum } from 'src/app/state/aircraft.state';
 import { Aircraft } from 'src/app/model/aircraft.model';
 import { map, catchError, of } from 'rxjs';
-import { AircraftsActionsTypes, onActionEvent } from 'src/app/model/actionEvent';
-
-
-
+import { EventService } from 'src/app/services/event.service';
 
 
 @Component({
@@ -23,10 +20,12 @@ export class AircraftsComponent implements OnInit {
   readonly dataStateEnum = DataStateEnum;
 
 
-  constructor(private aircraftService:AircraftService) { }
+  constructor(private aircraftService:AircraftService, private eventService : EventService) { }
 
   ngOnInit(): void {
-    this.getAllAircrafts();
+  this.eventService.eventSubjectObservable.subscribe((actionEvent:onActionEvent) => {
+    this.onActionEvent(actionEvent);
+  })
     
   }
 
