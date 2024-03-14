@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { EventService } from 'src/app/services/event.service';
-import { AircraftsActionsTypes } from 'src/app/state/aircraft.state';
+import { AicraftSearchType, AircraftsActionsTypes } from 'src/app/state/aircraft.state';
 
 @Component({
   selector: 'app-aircrafts-navbar',
@@ -13,10 +14,24 @@ export class AircraftsNavbarComponent implements OnInit {
 
   @Output() eventEmitter : EventEmitter<any> = new EventEmitter();
 
-  constructor(private eventService : EventService) { }
+  searchCtrl!:FormControl;
+  searchTypeCtrl!:FormControl;
+
+
+  constructor(private eventService : EventService, private formBuilder : FormBuilder) { }
+
+
 
   ngOnInit(): void {
+    this.initForm();
   }
+
+  private initForm () {
+    this.searchCtrl = this.formBuilder.control('');
+    this.searchTypeCtrl=this.formBuilder.control(AicraftSearchType.MSN);
+  
+  }
+
   getAllAircrafts(){
     this.eventService.publishEvent({type : AircraftsActionsTypes.GET_ALL_AIRCRAFTS,payload : null});
   }
@@ -35,6 +50,7 @@ export class AircraftsNavbarComponent implements OnInit {
 
 onActionEvent($event : any){
   if($event == "ALL_AIRCRAFTS") this.getAllAircrafts();
+
 }
 
 }

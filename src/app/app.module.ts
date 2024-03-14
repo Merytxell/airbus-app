@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AircraftsComponent } from './components/aircrafts/aircrafts.component';
 import { AircraftsNavbarComponent } from './components/aircrafts/aircrafts-navbar/aircrafts-navbar.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { AircraftsNavbarComponent } from './components/aircrafts/aircrafts-navba
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule
    
   ],
   providers: [],

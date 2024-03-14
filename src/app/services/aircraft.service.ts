@@ -17,7 +17,7 @@ export class AircraftService {
   }
 
   public getDesignedAircrafts(): Observable<Aircraft[]>{
-    return this.http.get<Aircraft[]>(environment.host+"/aircrafts");
+    return this.http.get<Aircraft[]>(environment.host+"/aircrafts?design=true");
   }
 
   public getDeveloppementAircrafts():Observable<Aircraft[]>{
@@ -26,5 +26,9 @@ export class AircraftService {
 
   public getAircraftByMsn(id:number): Observable <Aircraft> {
     return this.http.get<Aircraft>(environment.host+"/aircrafts/"+id);
+  }
+
+  public getAircraftByProgram(value : string): Observable<Aircraft[]>{
+    return this.http.get<Aircraft[]>(environment.host+"/aircrafts?prog_like="+value);
   }
 }

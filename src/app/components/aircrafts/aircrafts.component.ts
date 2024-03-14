@@ -37,15 +37,11 @@ export class AircraftsComponent implements OnInit {
     );
   }
   //méthode pour chercher les avions et les filtrer par MSN.
-  search(searchAircraft : number){
-    if (searchAircraft){
-      this.getAllAircrafts();
-      return;
-    }
-    this.aircrafts$=this.aircraftService.getAircraftByMsn(searchAircraft).pipe(
+  search(searchAircraft : string){
+    this.aircrafts$=this.aircraftService.getAircraftByProgram(searchAircraft).pipe(
       map(aircraft => ({
         dataState: DataStateEnum.LOADED,
-        data : [aircraft]
+        data : aircraft
       })),
         startWith ({dataState : DataStateEnum.LOADING}),
         catchError(err => of ({dataState : DataStateEnum.ERROR, errorMessage: err.message}))
