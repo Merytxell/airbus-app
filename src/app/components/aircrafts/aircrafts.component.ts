@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, startWith } from 'rxjs';
 import { AircraftService } from 'src/app/services/aircraft.service';
-import { AircraftsActionsTypes, AppDataState, onActionEvent } from 'src/app/state/aircraft.state';
+import { AicraftSearchType, AircraftsActionsTypes, AppDataState, onActionEvent } from 'src/app/state/aircraft.state';
 import { DataStateEnum } from 'src/app/state/aircraft.state';
 import { Aircraft } from 'src/app/model/aircraft.model';
 import { map, catchError, of } from 'rxjs';
@@ -48,6 +48,13 @@ export class AircraftsComponent implements OnInit {
       );
 
   }
+  getAllDesignedAircrafts(){
+    this.aircrafts$=this.aircraftService.getDesignedAircrafts().pipe(
+      map(data => ({dataState : DataStateEnum.LOADED, data : data})),
+      startWith({dataState : DataStateEnum.LOADING}),
+      catchError(err => of ({dataState : DataStateEnum.ERROR, errorMessage : err.message}))
+    );
+  }
  
 
   onActionEvent($actionEvent : onActionEvent){
@@ -58,6 +65,10 @@ export class AircraftsComponent implements OnInit {
 
       case AircraftsActionsTypes.GET_SEARCH_AIRCRAFTS :
         this.search($actionEvent.payload);
+        break;
+
+      case AircraftsActionsTypes.GET_DESIGNED_AIRCRAFTS:
+        this.getAllDesignedAircrafts();
         break;
     }
   }
