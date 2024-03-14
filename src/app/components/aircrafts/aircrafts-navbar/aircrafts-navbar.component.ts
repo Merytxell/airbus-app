@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { GetAllAircraftsAction } from 'src/app/ngrx/aircrafts.action';
 import { EventService } from 'src/app/services/event.service';
 import { AicraftSearchType, AircraftsActionsTypes } from 'src/app/state/aircraft.state';
 
@@ -18,7 +20,7 @@ export class AircraftsNavbarComponent implements OnInit {
   searchTypeCtrl!:FormControl;
 
 
-  constructor(private eventService : EventService, private formBuilder : FormBuilder) { }
+  constructor(private eventService : EventService, private formBuilder : FormBuilder, private store:Store<any>) { }
 
 
 
@@ -33,7 +35,7 @@ export class AircraftsNavbarComponent implements OnInit {
   }
 
   getAllAircrafts(){
-    this.eventService.publishEvent({type : AircraftsActionsTypes.GET_ALL_AIRCRAFTS,payload : null});
+    this.store.dispatch(new GetAllAircraftsAction({}));
   }
 
   getDesignAircrafts(){

@@ -12,8 +12,7 @@ export class AircraftService {
   constructor(private http:HttpClient) { }
 
   public getAircrafts():Observable<Aircraft[]>{
-    let host = Math.random()>0.5 ? environment.host : environment.unreachableHost;
-    return this.http.get<Aircraft[]>(host+"/aircrafts");
+    return this.http.get<Aircraft[]>(environment.host+"/aircrafts");
   }
 
   public getDesignedAircrafts(): Observable<Aircraft[]>{
