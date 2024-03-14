@@ -8,6 +8,7 @@ import { map, catchError, of } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
 
 
+
 @Component({
   selector: 'app-aircrafts',
   templateUrl: './aircrafts.component.html',
@@ -55,7 +56,14 @@ export class AircraftsComponent implements OnInit {
       catchError(err => of ({dataState : DataStateEnum.ERROR, errorMessage : err.message}))
     );
   }
- 
+  getAllDeveloppementAircrafts(){
+    this.aircrafts$=this.aircraftService.getDeveloppementAircrafts().pipe(
+      map(data => ({dataState : DataStateEnum.LOADED, data : data})),
+      startWith({dataState : DataStateEnum.LOADING}),
+      catchError( err => of ({ dataState : DataStateEnum.ERROR, errorMessage : err.message}))
+
+    );
+  }
 
   onActionEvent($actionEvent : onActionEvent){
     switch($actionEvent.type){
@@ -70,6 +78,10 @@ export class AircraftsComponent implements OnInit {
       case AircraftsActionsTypes.GET_DESIGNED_AIRCRAFTS:
         this.getAllDesignedAircrafts();
         break;
+
+      case AircraftsActionsTypes.GET_DEVELOPMENT_AIRCRAFTS:
+      this.getAllDeveloppementAircrafts();
+      break;
     }
   }
 }
