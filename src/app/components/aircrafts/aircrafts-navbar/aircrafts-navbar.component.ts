@@ -3,7 +3,7 @@ import { Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { GetAllAircraftsAction } from 'src/app/ngrx/aircrafts.action';
+import { GetAllAircraftsAction, GetDesignedAircraftsAction, GetDevelopedAircraftsAction } from 'src/app/ngrx/aircrafts.action';
 import { EventService } from 'src/app/services/event.service';
 import { AicraftSearchType, AircraftsActionsTypes } from 'src/app/state/aircraft.state';
 
@@ -39,11 +39,11 @@ export class AircraftsNavbarComponent implements OnInit {
   }
 
   getDesignAircrafts(){
-    this.eventService.publishEvent({type : AircraftsActionsTypes.GET_DESIGNED_AIRCRAFTS, payload : null});
+    this.store.dispatch(new GetDesignedAircraftsAction({}));
   }
 
   getDeveloppementAircrafts(){
-    this.eventService.publishEvent({type : AircraftsActionsTypes.GET_DEVELOPMENT_AIRCRAFTS, payload : null});
+    this.store.dispatch(new GetDevelopedAircraftsAction({}));
 
   }
   onSearch(value : any){
