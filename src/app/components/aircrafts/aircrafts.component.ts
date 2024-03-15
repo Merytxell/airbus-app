@@ -8,6 +8,7 @@ import { map, catchError, of } from 'rxjs';
 import { EventService } from 'src/app/services/event.service';
 import { Store } from '@ngrx/store';
 import { AircraftsState, AircraftsStateEnum } from 'src/app/ngrx/aircrafts.state';
+import { selectCountAlertAircrafts } from 'src/app/ngrx/aircrafts.selectors';
 
 
 
@@ -19,11 +20,14 @@ import { AircraftsState, AircraftsStateEnum } from 'src/app/ngrx/aircrafts.state
 export class AircraftsComponent implements OnInit {
 
   aircraftsState$:Observable<AircraftsState>| null = null;
+  countAlertAircrafts$ : Observable<number> | undefined;
 
   readonly aircraftsStateEnum = AircraftsStateEnum;
+ 
 
-
-  constructor(private aircraftService:AircraftService, private eventService : EventService, private store:Store<any>) { }
+  constructor(private store:Store<any>) { 
+    this.countAlertAircrafts$= store.select(selectCountAlertAircrafts);
+  }
 
   ngOnInit(): void {
   this.aircraftsState$ = this.store.pipe(

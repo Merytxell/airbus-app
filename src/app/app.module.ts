@@ -9,10 +9,11 @@ import { AircraftsNavbarComponent } from './components/aircrafts/aircrafts-navba
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AircraftsReducer } from './ngrx/aircrafts.reducer';
 import { CommonModule } from '@angular/common';
 import { AircraftsEffects } from './ngrx/aircrafts.effect';
+
 
 
 
