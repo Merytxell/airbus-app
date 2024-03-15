@@ -1,5 +1,3 @@
-
-
 export enum DataStateEnum {
     LOADING ,
     LOADED,
@@ -27,3 +25,7 @@ export enum AicraftSearchType {
     MSN = 'msn',
 }
 
+export interface Operation {
+    ids :number;
+    entities : string;
+}

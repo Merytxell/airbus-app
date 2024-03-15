@@ -3,7 +3,7 @@ import { AircraftsState } from "./aircrafts.state";
 
 
 
-//le selector permet d'afficher une partie due state
+//le selector permet d'afficher une partie du state
 export const selectCountAlertAircrafts = createSelector(
     createFeatureSelector('airbusState'),
     (state : AircraftsState) => {

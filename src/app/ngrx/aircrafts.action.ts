@@ -1,5 +1,6 @@
 import { Action } from "@ngrx/store";
 import { Aircraft } from 'src/app/model/aircraft.model';
+import { Operation } from "../state/aircraft.state";
 
 //action = événement, ici déclenché par un click du user
 
@@ -80,4 +81,22 @@ export class GetDesignedAircraftsActionSucces implements Action {
         }
     }
 
-export type AircraftsActions = GetAllAircraftsAction | GetAllAircraftsActionSucces | GetAllAircraftsActionError | GetDesignedAircraftsAction |GetDesignedAircraftsActionSucces | GetAllAircraftsActionError | GetDevelopedAircraftsAction | GetDevelopedAircraftsSuccess | GetDevelopedAircraftsError;
+    export enum OperationActionsTypes{
+        ADD_OPERATION = "[Operations] Add Operation",
+        REMOVE_OPERATION= "[Operations] Remove Operation"
+    }
+
+    export class AddOperationAction implements Action {
+            readonly type = OperationActionsTypes.ADD_OPERATION;
+            constructor (public payload : Operation){
+                
+         }
+    }
+
+    export class RemoveOperationAction implements Action {
+        readonly type = OperationActionsTypes.REMOVE_OPERATION;
+        constructor(public payload : number){}
+    }
+
+
+export type AircraftsActions = GetAllAircraftsAction | GetAllAircraftsActionSucces | GetAllAircraftsActionError | GetDesignedAircraftsAction |GetDesignedAircraftsActionSucces | GetAllAircraftsActionError | GetDevelopedAircraftsAction | GetDevelopedAircraftsSuccess | GetDevelopedAircraftsError |  RemoveOperationAction  | AddOperationAction ;

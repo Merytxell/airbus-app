@@ -5,6 +5,13 @@
     { "id": 3, "prog": "A380", "design": false, "developpement": true },
     { "id": 4, "prog": "A400M", "design": false, "developpement": false },
     { "id": 5, "prog": "A330", "design": true, "developpement": true }
+  ],
+
+
+
+  "compoments" : [
+    {"ids" : 1, "entities" : "plancher", "location" : "cabin-1"},
+    {"ids" : 2, "entities" : "plancher", "location" : "cabin-2"},
+    {"ids" : 3, "entities" : "plancher", "location" : "cockpit"}
   ]
-  
 }
